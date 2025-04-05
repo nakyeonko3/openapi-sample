@@ -1,0 +1,322 @@
+openapi: 3.0.1
+info:
+  title: My Project
+  description: ""
+  version: 1.0.0
+tags:
+  - name: tickets api
+paths:
+  /tickets:
+    get:
+      summary: GET /tickets
+      deprecated: false
+      description: 티켓 목록 확인
+      tags:
+        - tickets api
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                tickets:
+                  - id: 01JQA8YHB2WQ5GTDWDKWK744B9
+                    title: First Ticket
+                    description: This is the first ticket.
+                    status: open
+                    comments: []
+                  - id: 01JQA8YHSK6NSD1QEEJPES8592
+                    title: Slow load
+                    description: Page takes long.
+                    status: open
+                    comments: []
+                  - id: 01JQA8YJ8G5G5J6XTXJEB4RE13
+                    title: Button broken
+                    description: Click does nothing.
+                    status: open
+                    comments: []
+                  - id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+                    title: 새로운 티켓
+                    description: 티켓을 하나 추가하려고 합니다.
+                    status: open
+                    comments:
+                      - id: 01JQFRVCZ36PC7C3CDYWGGGVH2
+                        ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+                        content: 첫 댓글의 주인공이 되세요!
+          headers: {}
+      security: []
+    post:
+      summary: POST /tickets
+      deprecated: false
+      description: 티켓 생성
+      tags:
+        - tickets api
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 새로운 티켓
+                description:
+                  type: string
+                  description: 티켓을 하나 추가하려고 합니다
+              required:
+                - title
+                - description
+            example:
+              title: 새로운 티켓
+              description: 티켓 하나를 추가하려고 합니다.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQX1FTS2KJFQRFEWVEM83QH2
+                title: 새로운 티켓
+                description: 티켓 하나를 추가하려고 합니다.
+                status: open
+                comments: []
+          headers: {}
+      security: []
+  /tickets/{id}:
+    get:
+      summary: GET /tickets/:id
+      deprecated: false
+      description: 특정 티켓 확인
+      tags:
+        - tickets api
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          example: 01JQA8YHB2WQ5GTDWDKWK744B9
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQA8YHB2WQ5GTDWDKWK744B9
+                title: First Ticket
+                description: This is the first ticket.
+                status: open
+                comments: []
+          headers: {}
+      security: []
+    patch:
+      summary: PATCH /tickets/:id
+      deprecated: false
+      description: 티켓 수정
+      tags:
+        - tickets api
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          example: 01JQA8YHB2WQ5GTDWDKWK744B9
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: closed
+              required:
+                - status
+            example:
+              status: closed
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQA8YHB2WQ5GTDWDKWK744B9
+                title: First Ticket
+                description: This is the first ticket.
+                status: closed
+                comments: []
+          headers: {}
+      security: []
+    delete:
+      summary: DELETE /tickets/:id
+      deprecated: false
+      description: 티켓 삭제
+      tags:
+        - tickets api
+      parameters:
+        - name: id
+          in: path
+          description: ""
+          required: true
+          example: 01JQX1FTS2KJFQRFEWVEM83QH2
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQX1FTS2KJFQRFEWVEM83QH2
+                title: 새로운 티켓
+                description: 티켓 하나를 추가하려고 합니다.
+                status: closed
+                comments: []
+          headers: {}
+        "404":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+          headers: {}
+      security: []
+  /tickets/{ticketId}/comments:
+    get:
+      summary: GET /tickets/:ticketId/comments
+      deprecated: false
+      description: 댓글 목록
+      tags:
+        - tickets api
+      parameters:
+        - name: ticketId
+          in: path
+          description: ""
+          required: true
+          example: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                - id: 01JQFRVCZ36PC7C3CDYWGGGVH2
+                  ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+                  content: 첫 댓글의 주인공이 되세요!
+          headers: {}
+      security: []
+    post:
+      summary: POST /tickets/:ticketId/comments
+      deprecated: false
+      description: 댓글 생성
+      tags:
+        - tickets api
+      parameters:
+        - name: ticketId
+          in: path
+          description: ""
+          required: true
+          example: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: 첫 댓글의 주인공이 되세요
+              required:
+                - content
+            example:
+              content: 첫 댓글의 주인공이 되세요!
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQX26V9XH60Y98S7Z1J87EYR
+                ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+                content: 첫 댓글의 주인공이 되세요!
+          headers: {}
+      security: []
+  /tickets/{ticketId}/comments/{id}:
+    delete:
+      summary: DELETE /tickets/:ticketId/comments/:id
+      deprecated: false
+      description: |
+        댓글 삭제
+      tags:
+        - tickets api
+      parameters:
+        - name: ticketId
+          in: path
+          description: ""
+          required: true
+          example: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: ""
+          required: true
+          example: 01JQX26V9XH60Y98S7Z1J87EYR
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example:
+                id: 01JQX26V9XH60Y98S7Z1J87EYR
+                ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
+                content: 첫 댓글의 주인공이 되세요!
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://tickets-api.codedemo.co
+    description: tickets-api.codedemo
+security: []
