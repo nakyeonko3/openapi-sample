@@ -30,7 +30,6 @@ paths:
                     status: open
                     comments:
                       - id: 01JQFRVCZ36PC7C3CDYWGGGVH2
-                        ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
                         content: This is the first comment.
                   - id: 01JQA8YHSK6NSD1QEEJPES8592
                     title: Slow load
@@ -226,7 +225,6 @@ paths:
                 properties: {}
               example:
                 - id: 01JQFRVCZ36PC7C3CDYWGGGVH2
-                  ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
                   content: This is the first comment.
           headers: {}
       security: []
@@ -267,7 +265,6 @@ paths:
                 properties: {}
               example:
                 id: 01JQX26V9XH60Y98S7Z1J87EYR
-                ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
                 content: This is the first comment.
           headers: {}
       security: []
@@ -303,7 +300,6 @@ paths:
                 properties: {}
               example:
                 id: 01JQX26V9XH60Y98S7Z1J87EYR
-                ticket_id: 01JQFRSC1ZD0BD7J7CFC4Y4KXP
                 content: This is the first comment.
           headers: {}
       security: []
