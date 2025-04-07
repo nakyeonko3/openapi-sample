@@ -1,4 +1,4 @@
-name: Generate document for todo-app
+name: Build and Deploy
 
 on:
   push:
@@ -17,11 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Generate Swagger UI
+      - name: Generate Swagger UI for Todo App
         uses: Legion2/swagger-ui-action@v1
         with:
           output: public/todo-app
           spec-file: ./todo-app/openapi.yaml
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate Swagger UI for Tickets API
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          output: public/tickets
+          spec-file: ./tickets/openapi.yaml
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
