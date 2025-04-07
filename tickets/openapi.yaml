@@ -69,7 +69,7 @@ paths:
               title: New Ticket
               description: This is a new ticket.
       responses:
-        "200":
+        "201":
           description: 티켓 생성 성공
           content:
             application/json:
@@ -256,7 +256,7 @@ paths:
             example:
               content: This is the first comment.
       responses:
-        "200":
+        "201":
           description: 댓글 생성 성공
           content:
             application/json:
