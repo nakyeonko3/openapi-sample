@@ -26,32 +26,7 @@ paths:
                     type: array
                     description: 티켓 목록
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: 티켓 ID
-                        title:
-                          type: string
-                          description: 티켓 제목
-                        description:
-                          type: string
-                          description: 티켓 내용
-                        status:
-                          type: string
-                          description: 티켓 상태
-                        comments:
-                          type: array
-                          description: 댓글 목록
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                                description: 댓글 ID
-                              content:
-                                type: string
-                                description: 댓글 내용
+                      $ref: "#/components/schemas/Ticket"
               example:
                 tickets:
                   - id: 01JQA8YHB2WQ5GTDWDKWK744B9
@@ -104,8 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Ticket"
               example:
                 id: 01JQX1FTS2KJFQRFEWVEM83QH2
                 title: New Ticket
@@ -135,8 +109,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Ticket"
               example:
                 id: 01JQA8YHB2WQ5GTDWDKWK744B9
                 title: Some Ticket
@@ -178,8 +151,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Ticket"
               example:
                 id: 01JQA8YHB2WQ5GTDWDKWK744B9
                 title: Some Ticket
@@ -208,8 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Ticket"
               example:
                 id: 01JQX1FTS2KJFQRFEWVEM83QH2
                 title: Some Ticket
@@ -251,8 +222,9 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
               example:
                 - id: 01JQFRVCZ36PC7C3CDYWGGGVH2
                   content: This is the first comment.
@@ -291,8 +263,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Comment"
               example:
                 id: 01JQX26V9XH60Y98S7Z1J87EYR
                 content: This is the first comment.
@@ -326,15 +297,44 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties: {}
+                $ref: "#/components/schemas/Comment"
               example:
                 id: 01JQX26V9XH60Y98S7Z1J87EYR
                 content: This is the first comment.
           headers: {}
       security: []
 components:
-  schemas: {}
+  schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 댓글 ID
+        content:
+          type: string
+          description: 댓글 내용
+
+    Ticket:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 티켓 ID
+        title:
+          type: string
+          description: 티켓 제목
+        description:
+          type: string
+          description: 티켓 내용
+        status:
+          type: string
+          description: 티켓 상태
+        comments:
+          type: array
+          description: 댓글 목록
+          items:
+            $ref: "#/components/schemas/Comment"
   securitySchemes: {}
 servers:
   - url: https://tickets-api.codedemo.co
